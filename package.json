@@ -1,5 +1,5 @@
 {
-  "name": "batch_sample",
+  "name": "API_sample",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
@@ -9,6 +9,6 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^4.3.1"
+    "webpack-dev-server": "^4.8.1"
   }
 }

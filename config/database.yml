@@ -5,17 +5,17 @@ default: &default
   collation: utf8mb4_bin
   host: <%= ENV['MYSQL_HOST'] || '127.0.0.1' %>
   port: <%= ENV['MYSQL_PORT'] || 3306 %>
-  username: <%= ENV['MYSQL_USER'] || 'batch_user' %>
-  password: <%= ENV['MYSQL_PASSWORD'] || 'batch' %>
-  database: batch_dev
+  username: <%= ENV['MYSQL_USER'] || 'API_user' %>
+  password: <%= ENV['MYSQL_PASSWORD'] || 'password' %>
+  database: API_dev
 
 development:
   <<: *default
 
 test:
   <<: *default
-  database: batch_test
+  database: API_test
 
 production:
   <<: *default
-  database: batch
+  database: API

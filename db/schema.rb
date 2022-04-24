@@ -10,34 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_230102) do
+ActiveRecord::Schema.define(version: 2022_04_24_104517) do
 
-  create_table "ranks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", comment: "ゲーム内のランキング情報", force: :cascade do |t|
-    t.bigint "user_id", null: false, comment: "ユーザー"
-    t.integer "rank", default: 0, null: false, comment: "ユーザーの順位"
-    t.integer "score", default: 0, null: false, comment: "このランクに至ったスコア"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["rank"], name: "index_ranks_on_rank"
-    t.index ["user_id"], name: "index_ranks_on_user_id", unique: true
-  end
-
-  create_table "user_scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", comment: "ユーザーがゲーム内で獲得した点数", force: :cascade do |t|
-    t.bigint "user_id", null: false, comment: "ユーザー"
-    t.integer "score", default: 0, null: false, comment: "ユーザーが獲得した点数"
-    t.datetime "received_at", null: false, comment: "点数を獲得した日時"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["received_at"], name: "index_user_scores_on_received_at"
-    t.index ["user_id"], name: "index_user_scores_on_user_id"
-  end
-
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", comment: "ゲームのユーザー情報を管理するテーブル", force: :cascade do |t|
-    t.string "name", null: false, comment: "ユーザーの名前"
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "ranks", "users"
-  add_foreign_key "user_scores", "users", on_update: :cascade, on_delete: :cascade
+  create_table "ideas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "category_id"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
 end
